@@ -59,6 +59,19 @@ const TripSchema = new Schema({
   budget: BudgetSchema,
 });
 
+TripSchema.pre("findOneAndUpdate", function () {
+  if (this.getUpdate().budget) {
+    this.getUpdate().budget.spent +=
+      this.getUpdate().budget?.expenses?.reduce(
+        (acc, expense) => acc + expense.amount,
+        0
+      ) || 0;
+    this.getUpdate().budget.expenses?.map((expense) => {
+      expense.date = new Date();
+    });
+  }
+});
+
 const Trip = model("Trip", TripSchema);
 
 export default Trip;
