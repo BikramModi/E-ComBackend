@@ -39,20 +39,8 @@ UserSchema.pre("save", async function () {
 
 // Ensure password is hashed on update operations as well
 UserSchema.pre("findOneAndUpdate", async function () {
-  const update = this.getUpdate();
-
-  // Handle both direct assignment and $set updates
-  const password =
-    update?.password ?? (update?.$set ? update.$set.password : undefined);
-
-  if (password) {
-    const hashed = await hash(password, 10);
-    if (update.password) {
-      update.password = hashed;
-    }
-    if (update.$set && update.$set.password) {
-      update.$set.password = hashed;
-    }
+  if (this.getUpdate().password) {
+    this.getUpdate().password = await hash(this.getUpdate().password, 10);
   }
 });
 
