@@ -1,7 +1,9 @@
 import Baggage from "../models/baggage.js";
 import NotFoundError from "../errors/not-found-error.js";
+import { getTripById } from "./trip.js";
 
 export const createBaggage = async (baggageData) => {
+  await getTripById(baggageData.trip, baggageData.user);
   const baggage = await Baggage.create(baggageData);
   return baggage;
 };
@@ -24,6 +26,7 @@ export const getBaggageById = async (id, userId, tripId) => {
 };
 
 export const updateBaggage = async (id, userId, tripId, baggageData) => {
+  await getTripById(tripId, userId);
   const baggage = await Baggage.findOneAndUpdate(
     { _id: id, user: userId, trip: tripId },
     baggageData,
@@ -38,6 +41,7 @@ export const updateBaggage = async (id, userId, tripId, baggageData) => {
 };
 
 export const deleteBaggage = async (id, userId, tripId) => {
+  await getTripById(tripId, userId);
   const baggage = await Baggage.findOneAndDelete({
     _id: id,
     user: userId,
