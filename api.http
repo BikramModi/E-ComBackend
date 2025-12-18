@@ -1,19 +1,20 @@
 @baseUrl = http://localhost:3000
 @userId = 691af6ce679594af902955ed
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTMyYjAyNGIwYzI2MmRmNDM2NDJiZmIiLCJpYXQiOjE3NjU3MDcyMjksImV4cCI6MTc2NTc5MzYyOX0.X8veBEKlIjxTk3IeGoeBb2w6lkGy50BTyzRenXuBjZs
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTMyYjAyNGIwYzI2MmRmNDM2NDJiZmIiLCJpYXQiOjE3NjYwNTI1NTAsImV4cCI6MTc2NjEzODk1MH0.AroKc6ny_3GnUJihgxRhxB3QnIcY25q4HsrYghYx7E0
 
 ### Create a new user
 POST {{baseUrl}}/users
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "John Doe",
-  "email": "john.doe6@example.com",
+  "email": "john.doe8@example.com",
   "password": "password"
 }
 
 ### Get all users
-GET {{baseUrl}}/users
+GET {{baseUrl}}/users?limit=5&page=1&search=jo&sort=name&order=asc
 Authorization: Bearer {{token}}
 
 ### Get a user by id

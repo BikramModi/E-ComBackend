@@ -6,7 +6,7 @@ import {
   updateBaggage,
   deleteBaggage,
 } from "../services/baggage.js";
-import { useValidator } from "../middlewares/validator.js";
+import useValidator from "../middlewares/useValidator.js";
 import {
   createBagaggeValidator,
   updateBagaggeValidator,

@@ -1,5 +1,5 @@
 import Trip from "../models/trips.js";
-import NotFoundError from "../errors/NotFoundError.js";
+import NotFoundError from "../errors/not-found-error.js";
 
 export const createTrip = async (tripData) => {
   const trip = await Trip.create(tripData);

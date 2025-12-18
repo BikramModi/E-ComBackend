@@ -6,7 +6,7 @@ import {
   updateItinerary,
   deleteItinerary,
 } from "../services/itinerary.js";
-import { useValidator } from "../middlewares/validator.js";
+import useValidator from "../middlewares/useValidator.js";
 import {
   createItineraryValidator,
   updateItineraryValidator,
@@ -82,3 +82,5 @@ ITINERARY_ROUTER.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+export default ITINERARY_ROUTER;
