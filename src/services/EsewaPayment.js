@@ -53,8 +53,8 @@ export const generateEsewaPayment = async (amount, orderId) => {
     transaction_uuid: transaction_uuid,
     product_code: productCode,
     signature,
-    success_url: `${process.env.BASE_URL}/payment/esewa/success`,
-    failure_url: `${process.env.BASE_URL}/payment/esewa/failure`,
+    success_url: `${process.env.BACKEND_URL}/payment/esewa/success`,
+    failure_url: `${process.env.BACKEND_URL}/payment/esewa/failure`,
   };
 };
 
