@@ -79,7 +79,7 @@ export const register = async (userData, res) => {
   res.cookie("accessToken", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", //true in production, false in development
-    sameSite: "lax",
+    sameSite: "none", //none for production
     maxAge: 1000 * 60 * 60 * 24, // 1 day
   });
 
@@ -126,7 +126,7 @@ export const login = async (userData, res, req) => {
   res.cookie("accessToken", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", //true in production, false in development
-    sameSite: "lax",
+    sameSite: "none", //none for productio
     maxAge: 1000 * 60 * 60 * 24, // 1 day
   });
 
