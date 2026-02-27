@@ -57,6 +57,7 @@ const updateUser = async (userId, userData) => {
       ...(userData.name && { name: userData.name }),
       ...(userData.email && { email: userData.email }),
       ...(userData.password && { password: userData.password }),
+      ...(userData.role && { role: userData.role }), // ✅ ADD THIS
     },
     {
       new: true,

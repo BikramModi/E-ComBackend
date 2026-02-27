@@ -104,4 +104,5 @@ export const updateTripValidator = [
     .optional()
     .isNumeric()
     .withMessage("Expense amount must be a number"),
+  
 ];
