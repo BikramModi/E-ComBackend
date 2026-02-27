@@ -93,7 +93,7 @@ KHALTI_ROUTER.get("/verify", async (req, res) => {
     */
 
     return res.redirect(
-      `${process.env.FRONTEND_URL}/khalti-payment-success?orderId=${order._id}`
+      `${process.env.BASE_URL}/khalti-payment-success?orderId=${order._id}`
     );
 
 
