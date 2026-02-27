@@ -34,7 +34,8 @@ SERVER.use((req, res, next) => {
 
 SERVER.use(
   cors({
-    origin: "http://localhost:5174", // your frontend
+     origin: process.env.BASE_URL || "http://localhost:5174",
+
     credentials: true,
   })
 );
