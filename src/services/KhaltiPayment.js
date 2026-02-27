@@ -41,8 +41,8 @@ export const initiatePaymentService = async ({ amount, orderId }) => {
   const response = await axios.post(
     KHALTI_API.INITIATE_PAYMENT,
     {
-      return_url: "http://localhost:6003/payment/khalti/verify",
-      website_url: "http://localhost:6003",
+      return_url: `${process.env.BACKEND_URL}/payment/khalti/verify`,
+      website_url: process.env.BASE_URL,
       amount: amount * 100, // convert to paisa
       purchase_order_id: orderId,
       purchase_order_name: "Test Order",

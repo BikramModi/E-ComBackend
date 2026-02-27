@@ -90,7 +90,7 @@ ESEWA_ROUTER.get("/success", async (req, res) => {
       total_amount
     );
 
-    if (verification.status !== "Completed") { //changed COMPLETE TO Completed
+    if (verification.status !== "COMPLETE") { 
        return res.redirect(
         `${process.env.BASE_URL}/esewa-payment-failed?error=VerificationFailed`
       );
