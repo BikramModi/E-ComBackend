@@ -54,7 +54,7 @@ ESEWA_ROUTER.get("/success", async (req, res) => {
       // Optional: quick status check before verify API
       if (paymentInfo.status !== "COMPLETE") {
           return res.redirect(
-          `${process.env.FRONTEND_URL}/esewa-payment-failed?error=PaymentNotComplete`
+          `${process.env.BASE_URL}/esewa-payment-failed?error=PaymentNotComplete`
         );
       }
     } else {
@@ -65,7 +65,7 @@ ESEWA_ROUTER.get("/success", async (req, res) => {
 
     if (!transaction_uuid || !total_amount) {
       return res.redirect(
-        `${process.env.FRONTEND_URL}/esewa-payment-failed?error=MissingPaymentData`
+        `${process.env.BASE_URL}/esewa-payment-failed?error=MissingPaymentData`
       );
 
     }
@@ -74,13 +74,13 @@ ESEWA_ROUTER.get("/success", async (req, res) => {
     const order = await Order.findById(transaction_uuid);
     if (!order) {
       return res.redirect(
-        `${process.env.FRONTEND_URL}/esewa-payment-failed?error=OrderNotFound`
+        `${process.env.BASE_URL}/esewa-payment-failed?error=OrderNotFound`
       );
     }
 
     if (order.status === "paid") {
        return res.redirect(
-        `${process.env.FRONTEND_URL}/esewa-payment-failed?error=OrderAlreadyPaid`
+        `${process.env.BASE_URL}/esewa-payment-failed?error=OrderAlreadyPaid`
       );
     }
 
@@ -92,7 +92,7 @@ ESEWA_ROUTER.get("/success", async (req, res) => {
 
     if (verification.status !== "COMPLETE") {
        return res.redirect(
-        `${process.env.FRONTEND_URL}/esewa-payment-failed?error=VerificationFailed`
+        `${process.env.BASE_URL}/esewa-payment-failed?error=VerificationFailed`
       );
     }
 
@@ -113,14 +113,14 @@ ESEWA_ROUTER.get("/success", async (req, res) => {
     {/*return res.send("Payment Successful");  */ }  //Replace it with frontend url page
 
     return res.redirect(
-      `${process.env.FRONTEND_URL}/esewa-payment-success?orderId=${order._id}`
+      `${process.env.BASE_URL}/esewa-payment-success?orderId=${order._id}`
     );
 
 
   } catch (err) {
     console.error("eSewa success error:", err.message);
     return res.redirect(
-      `${process.env.FRONTEND_URL}/esewa-payment-failed?error=ServerError`
+      `${process.env.BASE_URL}/esewa-payment-failed?error=ServerError`
     );
   }
 });
